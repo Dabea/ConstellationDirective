@@ -5,19 +5,29 @@
 * side note when seperateing directives in to their own file since ver 1.3 they must now be their own module where in pervious versions they needed to be the same module
 *   and you would add the directive name as a dependecny of main module. In 1.3+ You add the the new modle as the dependency
  */
-angular.module('starModule', [] ).directive('canvasTest', function(){
+var starModule2 = angular.module('starModule2', [] );
+
+starModule2.directive('canvasId', function(){
     return{
         restrict: 'AC' ,
-        templateUrl: 'angularTemplates/languageTemplate.html',
+
 
         link: function(scope,element, attrs){
 
+
+            var canvas2 = document.createElement('canvas');
+            canvas2.id  = attrs.canvasId;
+            canvas2.height  = attrs.canvasHeight;
+            canvas2.width  = attrs.canvasWidth;
+            element.append(canvas2);
+
+
             //var canvas =  document.getElementsByClassName('stars');  //<-- There must be a way in angualr to acces this element though I am not sure if it matters
-            var canvasobj = angular.element($('.stars'));
-            var canvas = canvasobj[0];
-            console.log(canvas);
+            //var canvasobj = angular.element($('.stars'));
+            var canvas = canvas2;
+
             var ctx = canvas.getContext('2d');
-            var starCount = 150;
+            var starCount = attrs.stars;
             var stars = [];
             var mouse = {};
 
@@ -44,6 +54,8 @@ angular.module('starModule', [] ).directive('canvasTest', function(){
 
                 this.alpha = (Math.random() * 0.4);
             };
+
+
 
             /*
              * creats all the stars and places them in the star  array
@@ -144,7 +156,6 @@ angular.module('starModule', [] ).directive('canvasTest', function(){
             function animate(){
                 //this will loop the animation
                 requestAnimationFrame(animate);
-
                 star.prototype.draw();
                 starConnectingLines();
                 star.prototype.update();
@@ -156,3 +167,17 @@ angular.module('starModule', [] ).directive('canvasTest', function(){
     };
 });
 
+/*
+starModule2.factory('starCanvasFactory', function(){
+    return function(id, height, width){
+        id = id || "star";
+        height = height || 350;
+        width = width || 350;
+        return{
+            createCanvas: function(){
+
+            }
+        }
+    };
+});
+*/
