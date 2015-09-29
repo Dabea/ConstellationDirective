@@ -1,0 +1,51 @@
+<h1 class="text-center"> Star Constelation </h1>
+
+<div canvas-Id="stars1" canvas-height="500" canvas-width="500" stars="250" style=" float: left">
+</div>
+<div  style="background-color: #122b40;  float: left; height: 500px; width: 300px;" class="clearfix">
+<h2 class="text-center" style="color: #ffffff" > Constelation Controll</h2>
+    <!--Star Count Start -->
+<div class="">
+    <div class="col-xs-12" style="margin-top: 20px">
+        <label class="col-xs-8 " style="color: #ffffff">Star Count</label>
+        <input  class="col-xs-4" type="text" ng-model="starCount"  ng-change="numberOfStars(starCount)">
+    </div>
+    <div class="col-xs-12">
+       <input  type="range"  min="0" max="500" ng-model="starCount"  ng-change="numberOfStars(starCount)">
+    </div>
+</div> <!--Star Count End -->
+
+    <!--Star Color Start -->
+<div class="">
+    <div class="col-xs-12" style="margin-top: 20px">
+        <label style="color: #ffffff" class="col-xs-4 ">Color</label>
+        <input class="col-xs-4"   ng-model='colorText' type='color' value="ff00ff" >
+        <input class="col-xs-4"  type='text' id='lineColor' value='{{ colorText }}  '>
+    </div>
+</div>
+<!--Star Radius End -->
+<div class="">
+    <div class="col-xs-12" style="margin-top: 20px">
+        <label class="col-xs-8 " style="color: #ffffff">Line Length</label>
+        <input  class="col-xs-4" type="text" ng-model="lineLength"  ng-change="changeLineLength(lineLength)">
+    </div>
+    <div class="col-xs-12">
+        <input  type="range"  min="0" max="100" ng-model="lineLength"  ng-change="changeLineLength(lineLength)">
+    </div>
+</div> <!--Star Radius End -->
+
+    <div class="">
+        <div class="col-xs-12" style="margin-top: 20px">
+            <label class="col-xs-8 " style="color: #ffffff">Mouse Radius</label>
+            <input  class="col-xs-4" type="text" ng-model="mouseRadius"  ng-change="changeConstlationRadius(mouseRadius)">
+        </div>
+        <div class="col-xs-12">
+            <input  type="range"  min="0" max="100" ng-model="mouseRadius"  ng-change="changeConstlationRadius(mouseRadius)">
+        </div>
+    </div> <!--Star Radius End -->
+
+
+
+
+</div>
+
