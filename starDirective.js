@@ -12,9 +12,11 @@ starModule2.directive('canvasId', function(){
         restrict: 'AC' ,
 
 
+
+
         link: function(scope,element, attrs){
 
-
+            console.log(scope);
             var canvas2 = document.createElement('canvas');
             canvas2.id  = attrs.canvasId;
             canvas2.height  = attrs.canvasHeight;
@@ -30,6 +32,40 @@ starModule2.directive('canvasId', function(){
             var starCount = attrs.stars;
             var stars = [];
             var mouse = {};
+
+            var lineLength = 50;
+            var  constlationRadius = 50;
+
+            scope.colorText = '#ff2b2b';
+            scope.starCount = attrs.stars;
+            scope.lineLength = lineLength;
+            scope.mouseRadius =  constlationRadius;
+            /*
+            Star Change Count
+            This seems like it should go somewhere else... I am not sure where though
+             */
+            scope.numberOfStars = function(newStarCount){
+                if(stars.length > newStarCount){
+                    starsToBeRemoved = starCount - newStarCount;
+                    stars.splice(0, starsToBeRemoved);
+                }
+                if(stars.length < newStarCount){
+                  while(stars.length < newStarCount) {
+                      stars.push(new star());
+                  }
+                }
+                starCount = newStarCount;
+            };
+
+            scope.changeLineLength = function(newLength){
+                lineLength   = newLength;
+
+            };
+
+            scope.changeConstlationRadius = function(newRadius){
+                constlationRadius   = newRadius;
+
+            };
 
 
             /*
@@ -61,8 +97,10 @@ starModule2.directive('canvasId', function(){
              * creats all the stars and places them in the star  array
              */
             star.prototype.create = function(){
-                for(var i = 0; starCount > i ; i++){
-                    stars.push(new star());
+                if(starCount  > stars.length ) {
+                    for (var i = 0; starCount > i; i++) {
+                        stars.push(new star());
+                    }
                 }
             };
 
@@ -101,8 +139,8 @@ starModule2.directive('canvasId', function(){
             var starConnectingLines = function(){
                 //This is the radius of the included stars from the mouse location
                 var starCount = stars.length;
-                var  constlationRadius = 50;
-                var lineLength = 50;
+
+
                 var color = $('#lineColor').val();
                 if(color){
                     lineColor = color;
