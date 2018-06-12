@@ -2,4 +2,4 @@
 
 Here is what the constaion looks like
 
-![Alt Text](./constliationDemo.gif)
+![Alt Text](https://upload.wikimedia.org/wikipedia/commons/6/62/Starsinthesky.jpg)
